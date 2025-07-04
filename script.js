@@ -40,8 +40,7 @@ btnScrollTo.addEventListener('click', function (e) {
   // e.preventDefault();
   // we need the coordinates to tell javascript where it should scroll to
   const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-  console.log(window.scrollX, window.scrollY);
+
   // Scrolling
   // window.scrollTo(
   //   s1coords.left + window.scrollX,
@@ -75,11 +74,9 @@ btnScrollTo.addEventListener('click', function (e) {
 // 2-Determine what element originated the event
 // e.target == the html element which was clicked by the user
 document.querySelector('.nav__links').addEventListener('click', function (e) {
-  console.log(e.target);
   e.preventDefault();
   // Matching Strategy
   if (e.target.classList.contains('nav__link')) {
-    console.log('Link');
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
@@ -208,7 +205,7 @@ const imgTargets = document.querySelectorAll('img[data-src]');
 const loadImg = function (entries, observer) {
   //Destructure the entries
   const [entry] = entries;
-  console.log(entry);
+
   // Guard clause
   if (!entry.isIntersecting) return;
   // Replace the src with the data-src for lazy loading
@@ -318,23 +315,12 @@ slider();
 /////////////////////////////////
 
 //Styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
-
-console.log(getComputedStyle(message).height);
 
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
 
-console.log(getComputedStyle(message).height);
-
 // Attributes
 const logo = document.querySelector('.nav__logo');
-console.log(logo);
-console.log(logo.src);
-console.log(logo.alt);
-console.log(logo.getAttribute('class'));
-console.log(logo.getAttribute('alt'));
 
 //
 
@@ -349,26 +335,3 @@ console.log(logo.getAttribute('alt'));
 // Event propagation in practice
 
 // rgb(255,255,255)
-
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-
-console.log(randomColor());
-
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(e.target);
-  console.log(e.currentTarget === this);
-  // stop propagation
-  // e.stopPropagation();
-});
-
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(e.target);
-  console.log(e.currentTarget);
-  console.log(e.currentTarget === this);
-});
